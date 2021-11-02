@@ -50,6 +50,7 @@ class TableViewController: UITableViewController {
             cellProvider: {  tableView, indexPath, restaurantName in
                 let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! TableViewCell
                 
+                //configure the cell's data
                 cell.nameLabel.text = restaurantName
                 cell.thumbnailImageView.image = UIImage(named: self.restaurantImages[indexPath.row])
                 cell.locationLabel.text = self.restaurantLocations[indexPath.row]
