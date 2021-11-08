@@ -7,30 +7,25 @@
 
 import UIKit
 
+//this class is associated to the prototype cell
 class TableViewCell: UITableViewCell {
     
     @IBOutlet var nameLabel: UILabel!
     @IBOutlet var locationLabel: UILabel!
     @IBOutlet var typeLabel: UILabel!
     @IBOutlet var thumbnailImageView: UIImageView! {
-        didSet {
+        didSet { //set rounded corners
             thumbnailImageView.layer.cornerRadius = 20
             thumbnailImageView.clipsToBounds = true
         }
     }
 
-
-    
-
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
 
 }
