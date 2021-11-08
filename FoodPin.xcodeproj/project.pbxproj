@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4E6A38E62739009300114C4D /* Restaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E6A38E52739009300114C4D /* Restaurant.swift */; };
+		4E6A38ED27390B6500114C4D /* DiffableDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E6A38EC27390B6500114C4D /* DiffableDataSource.swift */; };
+		4E6A38F0273918B700114C4D /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E6A38EF273918B700114C4D /* DetailViewController.swift */; };
 		4E8182B5272FC24D00BC9C56 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E8182B4272FC24D00BC9C56 /* AppDelegate.swift */; };
 		4E8182B7272FC24D00BC9C56 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E8182B6272FC24D00BC9C56 /* SceneDelegate.swift */; };
 		4E8182BC272FC24D00BC9C56 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4E8182BA272FC24D00BC9C56 /* Main.storyboard */; };
@@ -17,6 +20,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4E6A38E52739009300114C4D /* Restaurant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Restaurant.swift; sourceTree = "<group>"; };
+		4E6A38EC27390B6500114C4D /* DiffableDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiffableDataSource.swift; sourceTree = "<group>"; };
+		4E6A38EF273918B700114C4D /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		4E8182B1272FC24D00BC9C56 /* FoodPin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FoodPin.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E8182B4272FC24D00BC9C56 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4E8182B6272FC24D00BC9C56 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -39,6 +45,32 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4E6A38E82739059600114C4D /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				4E6A38E52739009300114C4D /* Restaurant.swift */,
+				4E6A38EC27390B6500114C4D /* DiffableDataSource.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		4E6A38E9273905A800114C4D /* View */ = {
+			isa = PBXGroup;
+			children = (
+				4E8182CD272FDDCF00BC9C56 /* TableViewCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		4E6A38EA273905B400114C4D /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				4E8182CA272FC72800BC9C56 /* TableViewController.swift */,
+				4E6A38EF273918B700114C4D /* DetailViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
 		4E8182A8272FC24D00BC9C56 = {
 			isa = PBXGroup;
 			children = (
@@ -58,14 +90,15 @@
 		4E8182B3272FC24D00BC9C56 /* FoodPin */ = {
 			isa = PBXGroup;
 			children = (
+				4E6A38EA273905B400114C4D /* Controller */,
+				4E6A38E9273905A800114C4D /* View */,
+				4E6A38E82739059600114C4D /* Model */,
 				4E8182B4272FC24D00BC9C56 /* AppDelegate.swift */,
 				4E8182B6272FC24D00BC9C56 /* SceneDelegate.swift */,
 				4E8182BA272FC24D00BC9C56 /* Main.storyboard */,
 				4E8182BD272FC24D00BC9C56 /* Assets.xcassets */,
 				4E8182BF272FC24D00BC9C56 /* LaunchScreen.storyboard */,
 				4E8182C2272FC24D00BC9C56 /* Info.plist */,
-				4E8182CA272FC72800BC9C56 /* TableViewController.swift */,
-				4E8182CD272FDDCF00BC9C56 /* TableViewCell.swift */,
 			);
 			path = FoodPin;
 			sourceTree = "<group>";
@@ -140,10 +173,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4E6A38E62739009300114C4D /* Restaurant.swift in Sources */,
 				4E8182B5272FC24D00BC9C56 /* AppDelegate.swift in Sources */,
 				4E8182CE272FDDCF00BC9C56 /* TableViewCell.swift in Sources */,
 				4E8182CB272FC72800BC9C56 /* TableViewController.swift in Sources */,
 				4E8182B7272FC24D00BC9C56 /* SceneDelegate.swift in Sources */,
+				4E6A38ED27390B6500114C4D /* DiffableDataSource.swift in Sources */,
+				4E6A38F0273918B700114C4D /* DetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
