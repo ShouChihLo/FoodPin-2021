@@ -96,7 +96,8 @@ class TableViewController: UITableViewController {
     }
 
     // change the background color of the action button
-        favoriteAction.backgroundColor = UIColor.systemYellow
+    favoriteAction.backgroundColor = UIColor.systemYellow
+//    favoriteAction.image = UIImage(systemName: self.restaurants[indexPath.row].isFavorite ? "heart.slash.fill" : "heart.fill")
         
     let swipeConfiguration = UISwipeActionsConfiguration(actions: [favoriteAction])
 
@@ -123,6 +124,11 @@ class TableViewController: UITableViewController {
             // Call completion handler to dismiss the action button
             completionHandler(true)
         }
+        
+        // Change the button's color
+//        deleteAction.backgroundColor = UIColor.systemRed
+//        deleteAction.image = UIImage(systemName: "trash")
+
         
         // Configure the action as swipe action
         let swipeConfiguration = UISwipeActionsConfiguration(actions: [deleteAction])
