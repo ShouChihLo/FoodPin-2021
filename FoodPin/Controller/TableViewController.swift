@@ -145,7 +145,7 @@ class TableViewController: UITableViewController {
                 //get the destination's view controller
                 let destinationController = segue.destination as! DetailViewController
                 //pass the data from the source side to the destination side
-                destinationController.restaurantImageName = restaurants[indexPath.row].image
+                destinationController.restaurant = restaurants[indexPath.row]
             }
         }
     }
