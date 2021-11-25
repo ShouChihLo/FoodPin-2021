@@ -7,6 +7,7 @@
 
 import UIKit
 
+/* This class file is for modeling views on the prototype cell 1 of the detailview controller */
 class DetailTextCell: UITableViewCell {
     
     @IBOutlet var descriptionLabel: UILabel! {

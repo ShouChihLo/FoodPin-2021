@@ -7,7 +7,7 @@
 
 import UIKit
 
-//this class is associated to the prototype cell
+//This class is for modeling the prototype cell on the tableview controller
 class TableViewCell: UITableViewCell {
     
     @IBOutlet var nameLabel: UILabel!

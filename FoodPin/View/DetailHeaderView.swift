@@ -7,15 +7,19 @@
 
 import UIKit
 
+/* This class file is for modeling views on the table header of the detailview controller */
 class DetailHeaderView: UIView {
 
     @IBOutlet var headerImageView: UIImageView!
+    
     @IBOutlet var nameLabel: UILabel! {
         didSet {
             nameLabel.numberOfLines = 0
         }
     }
+    
     @IBOutlet var typeLabel: UILabel!
+    
     @IBOutlet var heartButton: UIButton! 
 
 }
