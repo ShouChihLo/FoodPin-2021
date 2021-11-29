@@ -20,6 +20,9 @@
 		4E8182C1272FC24D00BC9C56 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4E8182BF272FC24D00BC9C56 /* LaunchScreen.storyboard */; };
 		4E8182CB272FC72800BC9C56 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E8182CA272FC72800BC9C56 /* TableViewController.swift */; };
 		4E8182CE272FDDCF00BC9C56 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E8182CD272FDDCF00BC9C56 /* TableViewCell.swift */; };
+		4EACA1D52754ABCE0017E13A /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4EACA1D42754ABCE0017E13A /* MapKit.framework */; };
+		4EACA1D82754AE930017E13A /* DetailMapCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EACA1D72754AE930017E13A /* DetailMapCell.swift */; };
+		4EACA1DB2754BB700017E13A /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EACA1DA2754BB700017E13A /* MapViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +41,9 @@
 		4E8182C2272FC24D00BC9C56 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4E8182CA272FC72800BC9C56 /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		4E8182CD272FDDCF00BC9C56 /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
+		4EACA1D42754ABCE0017E13A /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		4EACA1D72754AE930017E13A /* DetailMapCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailMapCell.swift; sourceTree = "<group>"; };
+		4EACA1DA2754BB700017E13A /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -45,6 +51,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4EACA1D52754ABCE0017E13A /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -67,6 +74,7 @@
 				4E6C6AA4274B83E600C46EEE /* DetailHeaderView.swift */,
 				4E6C6AA7274B8C0300C46EEE /* DetailTextCell.swift */,
 				4E6C6AAA274B8DD200C46EEE /* DetailTwoColumnCell.swift */,
+				4EACA1D72754AE930017E13A /* DetailMapCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -76,6 +84,7 @@
 			children = (
 				4E8182CA272FC72800BC9C56 /* TableViewController.swift */,
 				4E6A38EF273918B700114C4D /* DetailViewController.swift */,
+				4EACA1DA2754BB700017E13A /* MapViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -85,6 +94,7 @@
 			children = (
 				4E8182B3272FC24D00BC9C56 /* FoodPin */,
 				4E8182B2272FC24D00BC9C56 /* Products */,
+				4EACA1D32754ABCE0017E13A /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -110,6 +120,14 @@
 				4E8182C2272FC24D00BC9C56 /* Info.plist */,
 			);
 			path = FoodPin;
+			sourceTree = "<group>";
+		};
+		4EACA1D32754ABCE0017E13A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				4EACA1D42754ABCE0017E13A /* MapKit.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -184,10 +202,12 @@
 			files = (
 				4E6C6AA5274B83E600C46EEE /* DetailHeaderView.swift in Sources */,
 				4E6A38E62739009300114C4D /* Restaurant.swift in Sources */,
+				4EACA1D82754AE930017E13A /* DetailMapCell.swift in Sources */,
 				4E8182B5272FC24D00BC9C56 /* AppDelegate.swift in Sources */,
 				4E6C6AA8274B8C0300C46EEE /* DetailTextCell.swift in Sources */,
 				4E8182CE272FDDCF00BC9C56 /* TableViewCell.swift in Sources */,
 				4E8182CB272FC72800BC9C56 /* TableViewController.swift in Sources */,
+				4EACA1DB2754BB700017E13A /* MapViewController.swift in Sources */,
 				4E8182B7272FC24D00BC9C56 /* SceneDelegate.swift in Sources */,
 				4E6A38ED27390B6500114C4D /* DiffableDataSource.swift in Sources */,
 				4E6A38F0273918B700114C4D /* DetailViewController.swift in Sources */,

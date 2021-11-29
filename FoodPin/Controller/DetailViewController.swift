@@ -36,13 +36,23 @@ class DetailViewController: UIViewController {
         
         navigationItem.largeTitleDisplayMode = .never
     }
+    
+    // MARK: - Navigation
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showMap" {
+            let destinationController = segue.destination as! MapViewController
+            destinationController.restaurant = restaurant
+        }
+    }
+    
 }
 
 
 extension DetailViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        2
+        3
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -51,7 +61,7 @@ extension DetailViewController: UITableViewDataSource, UITableViewDelegate {
         let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: DetailTextCell.self), for: indexPath) as! DetailTextCell
 
         cell.descriptionLabel.text = restaurant.summary
-        //cell.selectionStyle = .none
+        cell.selectionStyle = .none
 
         return cell
 
@@ -62,9 +72,16 @@ extension DetailViewController: UITableViewDataSource, UITableViewDelegate {
         cell.column1TextLabel.text = restaurant.location
         cell.column2TitleLabel.text = "Phone"
         cell.column2TextLabel.text = restaurant.phone
-        //cell.selectionStyle = .none
+        cell.selectionStyle = .none
 
         return cell
+            
+        case 2: // for prototype cell 3
+            let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: DetailMapCell.self), for: indexPath) as! DetailMapCell
+            cell.selectionStyle = .none
+            cell.configure(location: restaurant.location)
+
+            return cell
 
         default:
         fatalError("Failed to instantiate the table view cell for detail view controller")
