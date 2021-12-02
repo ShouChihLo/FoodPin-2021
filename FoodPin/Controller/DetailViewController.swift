@@ -58,34 +58,34 @@ extension DetailViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.row {
         case 0:  //for prototype cell 1
-        let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: DetailTextCell.self), for: indexPath) as! DetailTextCell
-
-        cell.descriptionLabel.text = restaurant.summary
-        cell.selectionStyle = .none
-
-        return cell
-
+            let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: DetailTextCell.self), for: indexPath) as! DetailTextCell
+            
+            cell.descriptionLabel.text = restaurant.summary
+            cell.selectionStyle = .none
+            
+            return cell
+            
         case 1:  //for prototype cell 2
-        let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: DetailTwoColumnCell.self), for: indexPath) as! DetailTwoColumnCell
-
-        cell.column1TitleLabel.text = "Address"
-        cell.column1TextLabel.text = restaurant.location
-        cell.column2TitleLabel.text = "Phone"
-        cell.column2TextLabel.text = restaurant.phone
-        cell.selectionStyle = .none
-
-        return cell
+            let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: DetailTwoColumnCell.self), for: indexPath) as! DetailTwoColumnCell
+            
+            cell.column1TitleLabel.text = "Address"
+            cell.column1TextLabel.text = restaurant.location
+            cell.column2TitleLabel.text = "Phone"
+            cell.column2TextLabel.text = restaurant.phone
+            cell.selectionStyle = .none
+            
+            return cell
             
         case 2: // for prototype cell 3
             let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: DetailMapCell.self), for: indexPath) as! DetailMapCell
             cell.selectionStyle = .none
             cell.configure(location: restaurant.location)
-
+            
             return cell
-
+            
         default:
-        fatalError("Failed to instantiate the table view cell for detail view controller")
-
+            fatalError("Failed to instantiate the table view cell for detail view controller")
+            
         }
     }
 }
