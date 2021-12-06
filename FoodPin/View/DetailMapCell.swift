@@ -65,15 +65,9 @@ class DetailMapCell: UITableViewCell {
 // Proceed the route to the destination using the Apple Maps
     
 //    @objc func openMap(sender: UITapGestureRecognizer) {
-
-//    let voiceText = AVSpeechUtterance(string: "Start navigation")
-//    voiceText.voice = AVSpeechSynthesisVoice(language: "en-US")
-//    let syn = AVSpeechSynthesizer()
-//    syn.speak(sound)
-    
 //        let mapItem = MKMapItem(placemark: MKPlacemark(coordinate: targetPlacemark.location!.coordinate, addressDictionary: nil))
 //
-//        //mapItem.name = "Destination“
+//        mapItem.name = "Destination"
 //        mapItem.openInMaps(launchOptions: [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving])
 //    }
 

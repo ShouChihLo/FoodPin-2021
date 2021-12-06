@@ -52,15 +52,17 @@ class DetailViewController: UIViewController {
         }
     }
     
-    //back from the review view controller (tap the cross button)
+    //unwind from the review view controller (tap the cross button)
     @IBAction func close(segue: UIStoryboardSegue) {
     dismiss(animated: true, completion: nil)
     }
     
-    //back from the review view controller (tap any rating button)
+    //unwind from the review view controller (tap any rating button)
     @IBAction func rateRestaurant(segue: UIStoryboardSegue) {
         if let rating = segue.identifier {
+            // store the rating result (local but not global copy)
             self.restaurant.rating = rating
+            // show the rating on the image view
             self.headerView.ratingImageView.image = UIImage(named: rating)
         }
         

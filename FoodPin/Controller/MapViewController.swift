@@ -58,9 +58,9 @@ class MapViewController: UIViewController {
                 
     }
     
-    
+    // show the navigation route
     @IBAction func openMap() {
-        
+       // enable the voice speaking
        let voiceText = AVSpeechUtterance(string: "Start navigation")
         voiceText.voice = AVSpeechSynthesisVoice(language: "en-US")
 //        let voiceText = AVSpeechUtterance(string: "開始導航")
@@ -68,6 +68,7 @@ class MapViewController: UIViewController {
         let syn = AVSpeechSynthesizer()
         syn.speak(voiceText)
         
+        // open the apple maps and show the route
         let mapItem = MKMapItem(placemark: MKPlacemark(coordinate: targetPlacemark.location!.coordinate, addressDictionary: nil))
         
         mapItem.name = "Destination"
@@ -76,6 +77,9 @@ class MapViewController: UIViewController {
     
     
 }
+
+
+// provide customized annotations
 
 extension MapViewController: MKMapViewDelegate {
     

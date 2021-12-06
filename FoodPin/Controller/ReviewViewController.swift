@@ -27,7 +27,7 @@ class ReviewViewController: UIViewController {
         
         let moveRightTransform = CGAffineTransform.init(translationX: 600, y: 0)
         
-        // Make the button invisible
+        // Make the button invisible and off the screen
         for rateButton in rateButtons {
             rateButton.transform = moveRightTransform
             rateButton.alpha = 0
@@ -35,19 +35,14 @@ class ReviewViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        //Animate the rate buttons
+        //Animate the rating buttons
         for index in 0...4 {
-            UIView.animate(withDuration: 0.4, delay: 0.1+0.05*Double(index), options: [], animations:
-                            {
-                                self.rateButtons[index].alpha = 1.0
-                                self.rateButtons[index].transform = .identity
-                            }, completion: nil)
+            UIView.animate(withDuration: 0.4, delay: 0.1+0.05*Double(index), options: [], animations: {
+                self.rateButtons[index].alpha = 1.0
+                self.rateButtons[index].transform = .identity
+            }, completion: nil)
         }
     }
 
     
-
-  
-    
-
 }
