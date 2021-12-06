@@ -20,6 +20,8 @@ class DetailHeaderView: UIView {
     
     @IBOutlet var typeLabel: UILabel!
     
-    @IBOutlet var heartButton: UIButton! 
+    @IBOutlet var heartButton: UIButton!
+    
+    @IBOutlet var ratingImageView: UIImageView!
 
 }

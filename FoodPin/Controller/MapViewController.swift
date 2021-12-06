@@ -7,8 +7,11 @@
 
 import UIKit
 import MapKit
+import AVFoundation
 
 class MapViewController: UIViewController {
+    
+    var targetPlacemark: CLPlacemark!
     
     @IBOutlet var mapView: MKMapView!
 
@@ -18,7 +21,7 @@ class MapViewController: UIViewController {
         super.viewDidLoad()
         
         // Configure map view
-        //mapView.delegate = self
+        mapView.delegate = self
         //mapView.showsCompass = true
         //mapView.showsScale = true
         //mapView.showsTraffic = true
@@ -34,6 +37,7 @@ class MapViewController: UIViewController {
             if let placemarks = placemarks {
                 // Get the first placemark
                 let placemark = placemarks[0]
+                self.targetPlacemark = placemark
                 
                 // Create annotation object
                 let annotation = MKPointAnnotation()
@@ -54,6 +58,50 @@ class MapViewController: UIViewController {
                 
     }
     
-
     
+    @IBAction func openMap() {
+        
+       let voiceText = AVSpeechUtterance(string: "Start navigation")
+        voiceText.voice = AVSpeechSynthesisVoice(language: "en-US")
+//        let voiceText = AVSpeechUtterance(string: "開始導航")
+//        voiceText.voice = AVSpeechSynthesisVoice(language: "zh-TW")
+        let syn = AVSpeechSynthesizer()
+        syn.speak(voiceText)
+        
+        let mapItem = MKMapItem(placemark: MKPlacemark(coordinate: targetPlacemark.location!.coordinate, addressDictionary: nil))
+        
+        mapItem.name = "Destination"
+        mapItem.openInMaps(launchOptions: [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving])
+    }
+    
+    
+}
+
+extension MapViewController: MKMapViewDelegate {
+    
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        let identifier = "MyMarker"
+        
+        if annotation.isKind(of: MKUserLocation.self) {  //unchanged to the marker of the current location
+            return nil
+        }
+        
+        // Reuse the annotation if possible
+        var annotationView: MKMarkerAnnotationView? = mapView.dequeueReusableAnnotationView(withIdentifier: identifier) as? MKMarkerAnnotationView
+        
+        if annotationView == nil {
+            annotationView = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+            annotationView?.canShowCallout = true
+        }
+        
+        //annotationView?.glyphText = "😋"
+        annotationView?.glyphImage = UIImage(systemName: "heart")
+        annotationView?.markerTintColor = UIColor.orange
+        
+        let leftIconView = UIImageView(frame: CGRect.init(x: 0, y: 0, width: 53, height: 53))
+        leftIconView.image = UIImage(named: restaurant.image)
+        annotationView?.leftCalloutAccessoryView = leftIconView
+        
+        return annotationView
+    }
 }

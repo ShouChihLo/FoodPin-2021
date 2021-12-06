@@ -16,6 +16,7 @@ struct Restaurant: Hashable {
     var summary: String = ""
     var image: String = ""
     var isFavorite: Bool = false
+    var rating: String?
 }
 
 //extend the defintion of an existing structure or class

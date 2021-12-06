@@ -15,7 +15,7 @@ class DetailViewController: UIViewController {
     
     @IBOutlet var tableView: UITableView!
     @IBOutlet var headerView: DetailHeaderView!
-    
+  
     //This variable will be set with the passed data from the segue
     var restaurant = Restaurant()
 
@@ -46,7 +46,27 @@ class DetailViewController: UIViewController {
             let destinationController = segue.destination as! MapViewController
             destinationController.restaurant = restaurant
         }
+        else if segue.identifier == "showReview" {
+            let destinationController = segue.destination as! ReviewViewController
+            destinationController.restaurant = restaurant
+        }
     }
+    
+    //back from the review view controller (tap the cross button)
+    @IBAction func close(segue: UIStoryboardSegue) {
+    dismiss(animated: true, completion: nil)
+    }
+    
+    //back from the review view controller (tap any rating button)
+    @IBAction func rateRestaurant(segue: UIStoryboardSegue) {
+        if let rating = segue.identifier {
+            self.restaurant.rating = rating
+            self.headerView.ratingImageView.image = UIImage(named: rating)
+        }
+        
+        dismiss(animated: true, completion: nil)
+    }
+
     
 }
 

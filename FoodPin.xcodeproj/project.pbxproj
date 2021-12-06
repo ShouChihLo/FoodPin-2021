@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4E3F460E275DF9B6003A09BC /* ReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E3F460D275DF9B6003A09BC /* ReviewViewController.swift */; };
 		4E6A38E62739009300114C4D /* Restaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E6A38E52739009300114C4D /* Restaurant.swift */; };
 		4E6A38ED27390B6500114C4D /* DiffableDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E6A38EC27390B6500114C4D /* DiffableDataSource.swift */; };
 		4E6A38F0273918B700114C4D /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E6A38EF273918B700114C4D /* DetailViewController.swift */; };
@@ -26,6 +27,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4E3F460D275DF9B6003A09BC /* ReviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewViewController.swift; sourceTree = "<group>"; };
 		4E6A38E52739009300114C4D /* Restaurant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Restaurant.swift; sourceTree = "<group>"; };
 		4E6A38EC27390B6500114C4D /* DiffableDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiffableDataSource.swift; sourceTree = "<group>"; };
 		4E6A38EF273918B700114C4D /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
@@ -85,6 +87,7 @@
 				4E8182CA272FC72800BC9C56 /* TableViewController.swift */,
 				4E6A38EF273918B700114C4D /* DetailViewController.swift */,
 				4EACA1DA2754BB700017E13A /* MapViewController.swift */,
+				4E3F460D275DF9B6003A09BC /* ReviewViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -202,6 +205,7 @@
 			files = (
 				4E6C6AA5274B83E600C46EEE /* DetailHeaderView.swift in Sources */,
 				4E6A38E62739009300114C4D /* Restaurant.swift in Sources */,
+				4E3F460E275DF9B6003A09BC /* ReviewViewController.swift in Sources */,
 				4EACA1D82754AE930017E13A /* DetailMapCell.swift in Sources */,
 				4E8182B5272FC24D00BC9C56 /* AppDelegate.swift in Sources */,
 				4E6C6AA8274B8C0300C46EEE /* DetailTextCell.swift in Sources */,
