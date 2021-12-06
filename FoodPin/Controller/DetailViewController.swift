@@ -26,6 +26,7 @@ class DetailViewController: UIViewController {
         // Connect the tableview to the controller itself that provides the method implementation
         tableView.dataSource = self
         tableView.delegate = self
+        
         // Config data on the table header
         headerView.headerImageView.image = UIImage(named: restaurant.image)
         headerView.nameLabel.text = restaurant.name
@@ -34,10 +35,11 @@ class DetailViewController: UIViewController {
         headerView.heartButton.tintColor = restaurant.isFavorite ? .systemYellow : .white
         headerView.heartButton.setImage(UIImage(systemName: heartImage), for: .normal)
         
+        // Disable the navigation title text
         navigationItem.largeTitleDisplayMode = .never
     }
     
-    // MARK: - Navigation
+    // MARK: - Proceed Segues for Navigation
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showMap" {
@@ -49,6 +51,7 @@ class DetailViewController: UIViewController {
 }
 
 
+// Method implementations for the tableview data source
 extension DetailViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
