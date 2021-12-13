@@ -9,6 +9,9 @@ import Foundation
 import CoreData
 import UIKit
 
+
+// The Restaurant class is required for modeling core data objects
+
 public class Restaurant: NSManagedObject {
     @nonobjc public class func fetchRequest() -> NSFetchRequest<Restaurant> {
         return NSFetchRequest<Restaurant>(entityName: "Restaurant")
@@ -26,8 +29,9 @@ public class Restaurant: NSManagedObject {
 }
 
 
+// This structure becomes useless in core data, but remains here for providing initial restaurant data
+// The Hashable protocol is needed for Diffable Data Source
 
-//the Hashable protocol is needed for Diffable Data Source
 struct RestaurantTM: Hashable {
     var name: String = ""
     var type: String = ""
@@ -42,6 +46,7 @@ struct RestaurantTM: Hashable {
 //extend the definition of an existing structure or class
 
 extension Restaurant {
+    
     static func generateData() {
         let sourceArray = [
             RestaurantTM(name: "Cafe Deadend", type: "Coffee & Tea Shop", location: "G/F, 72 Po Hing Fong, Sheung Wan, Hong Kong", phone: "232-923423", summary: "Searching for great breakfast eateries and coffee? This place is for you. We open at 6:30 every morning, and close at 9 PM. We offer espresso and espresso based drink, such as capuccino, cafe latte, piccolo and many more. Come over and enjoy a great meal.", image: "cafedeadend.jpg"),
@@ -67,6 +72,7 @@ extension Restaurant {
             RestaurantTM(name: "CASK Pub and Kitchen", type: "Thai", location: "22 Charlwood Street London SW1V 2DY Pimlico", phone: "432-344050", summary: "With kitchen serving gourmet burgers. We offer food every day of the week, Monday through to Sunday. Join us every Sunday from 4:30 – 7:30pm for live acoustic music!", image: "caskpubkitchen.jpg")
             ]
 
+        // Create managed objects for the above restaurant objects
         var restaurant: Restaurant!
         if let appDelegate = (UIApplication.shared.delegate as? AppDelegate) {
             for i in 0..<sourceArray.count {
@@ -79,7 +85,8 @@ extension Restaurant {
                 restaurant.isFavorite = false
                 restaurant.image = UIImage(named:sourceArray[i].image)!.pngData()!
             }
-            appDelegate.saveContext() //write once for all new restauranrs
+            //write all managed objects into the database
+            appDelegate.saveContext()
         }
 
     }

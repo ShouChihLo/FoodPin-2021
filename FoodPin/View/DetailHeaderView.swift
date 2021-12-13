@@ -7,7 +7,8 @@
 
 import UIKit
 
-/* This class file is for modeling views on the table header of the detailview controller */
+/* This class is for modeling views on the table header of the detailview controller */
+
 class DetailHeaderView: UIView {
 
     @IBOutlet var headerImageView: UIImageView!

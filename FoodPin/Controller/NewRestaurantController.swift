@@ -16,28 +16,24 @@ class NewRestaurantController: UITableViewController {
             nameTextField.delegate = self
         }
     }
-    
     @IBOutlet var typeTextField: RoundedTextField! {
         didSet {
             typeTextField.tag = 2
             typeTextField.delegate = self
         }
     }
-    
     @IBOutlet var addressTextField: RoundedTextField! {
         didSet {
             addressTextField.tag = 3
             addressTextField.delegate = self
         }
     }
-    
     @IBOutlet var phoneTextField: RoundedTextField! {
         didSet {
             phoneTextField.tag = 4
             phoneTextField.delegate = self
         }
     }
-    
     @IBOutlet var descriptionTextView: UITextView! {
         didSet {
             descriptionTextView.tag = 5
@@ -45,21 +41,19 @@ class NewRestaurantController: UITableViewController {
             descriptionTextView.layer.masksToBounds = true
         }
     }
-    
     @IBOutlet var photoImageView: UIImageView!
 
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        
     }
 
    
     // MARK: - UITableViewDelegate methods
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.row == 0 {
+        if indexPath.row == 0 {  // select the first cell contained one image view
             
             let photoSourceRequestController = UIAlertController(title: "", message: "Choose your photo source", preferredStyle: .actionSheet)
             
@@ -88,7 +82,7 @@ class NewRestaurantController: UITableViewController {
             photoSourceRequestController.addAction(cameraAction)
             photoSourceRequestController.addAction(photoLibraryAction)
             
-            // For iPad
+            // For iPad only
             if let popoverController = photoSourceRequestController.popoverPresentationController {
                 if let cell = tableView.cellForRow(at: indexPath) {
                     popoverController.sourceView = cell
@@ -108,6 +102,7 @@ class NewRestaurantController: UITableViewController {
 
 extension NewRestaurantController: UITextFieldDelegate  {
   
+    // auto return to the next input textfield
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if let nextTextField = view.viewWithTag(textField.tag + 1) {
             textField.resignFirstResponder()
@@ -118,9 +113,11 @@ extension NewRestaurantController: UITextFieldDelegate  {
     }
 }
 
+// MARK: - UIImagePickerControllerDelegate methods
 
 extension NewRestaurantController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
+    // Retrieve the image picked up by the usr
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         
         if let selectedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {

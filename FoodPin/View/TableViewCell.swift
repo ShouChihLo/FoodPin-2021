@@ -8,6 +8,7 @@
 import UIKit
 
 //This class is for modeling the prototype cell on the tableview controller
+
 class TableViewCell: UITableViewCell {
     
     @IBOutlet var nameLabel: UILabel!

@@ -79,7 +79,7 @@ class MapViewController: UIViewController {
 }
 
 
-// provide customized annotations
+// Provide customized annotations
 
 extension MapViewController: MKMapViewDelegate {
     

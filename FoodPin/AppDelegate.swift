@@ -37,6 +37,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     lazy var persistentContainer: NSPersistentContainer = {
         
+        // The following parameter name (i.e., FoodPin) should be the same as the data model file name (FoodPin.xcdatamodeld)
         let container = NSPersistentContainer(name: "FoodPin")
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in
             if let error = error as NSError? {
