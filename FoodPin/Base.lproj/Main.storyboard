@@ -25,8 +25,8 @@
                                     <rect key="frame" x="0.0" y="0.0" width="390" height="140"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" alignment="top" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="AAA-Ot-l3k">
-                                            <rect key="frame" x="20" y="11" width="350" height="120"/>
+                                        <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="AAA-Ot-l3k">
+                                            <rect key="frame" x="20" y="9" width="350" height="120"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Uyc-zO-bcr">
                                                     <rect key="frame" x="0.0" y="0.0" width="120" height="120"/>
@@ -51,7 +51,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Type" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5bq-jX-YeR">
-                                                            <rect key="frame" x="0.0" y="54.666666666666671" width="33.666666666666664" height="18"/>
+                                                            <rect key="frame" x="0.0" y="54.666666666666664" width="33.666666666666664" height="17.999999999999993"/>
                                                             <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
@@ -63,7 +63,7 @@
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="AAA-Ot-l3k" firstAttribute="top" secondItem="5Pc-8Y-SAp" secondAttribute="topMargin" priority="750" id="WuU-bq-oJM"/>
-                                        <constraint firstAttribute="bottomMargin" secondItem="AAA-Ot-l3k" secondAttribute="bottom" priority="750" id="X0h-NX-4Rz"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="AAA-Ot-l3k" secondAttribute="bottom" id="X0h-NX-4Rz"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="AAA-Ot-l3k" secondAttribute="trailing" id="cWK-eu-V0A"/>
                                         <constraint firstItem="AAA-Ot-l3k" firstAttribute="leading" secondItem="5Pc-8Y-SAp" secondAttribute="leadingMargin" id="k0X-Oz-yyJ"/>
                                     </constraints>
@@ -299,7 +299,7 @@
                                                 <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" scrollEnabled="NO" rotateEnabled="NO" pitchEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d6I-eP-Kaa">
                                                     <rect key="frame" x="0.0" y="0.0" width="390" height="200.33333333333334"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="200" id="jsI-YH-Sih"/>
+                                                        <constraint firstAttribute="height" priority="750" constant="200" id="jsI-YH-Sih"/>
                                                     </constraints>
                                                 </mapView>
                                             </subviews>
