@@ -82,7 +82,14 @@
                             <outlet property="delegate" destination="5qS-kl-C45" id="S2z-hh-Zih"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="FoodPin" id="HaW-k1-kdS"/>
+                    <navigationItem key="navigationItem" title="FoodPin" id="HaW-k1-kdS">
+                        <barButtonItem key="rightBarButtonItem" image="plus" catalog="system" id="Yoj-n4-ltq">
+                            <color key="tintColor" systemColor="labelColor"/>
+                            <connections>
+                                <segue destination="sMk-xg-vki" kind="presentation" identifier="addRestaurant" id="bcH-Z0-78w"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="flX-aA-6QM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -492,7 +499,7 @@
             <objects>
                 <tableViewController id="YZU-87-3S4" customClass="NewRestaurantController" customModule="FoodPin" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="HVc-TC-TTx">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="790"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <sections>
@@ -692,7 +699,7 @@
                         <barButtonItem key="leftBarButtonItem" image="xmark" catalog="system" id="ybL-kN-YKO">
                             <color key="tintColor" systemColor="labelColor"/>
                             <connections>
-                                <segue destination="OSv-Rc-NiV" kind="unwind" unwindAction="unwindToHomeWithSegue:" id="HfV-W5-qMg"/>
+                                <segue destination="OSv-Rc-NiV" kind="unwind" unwindAction="unwindToHomeWithSegue:" id="7RJ-dZ-c0T"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Save" id="Zej-OJ-PGe">
@@ -722,7 +729,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="sMk-xg-vki" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="gMf-w6-BAa">
-                        <rect key="frame" x="0.0" y="44" width="390" height="96"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="108"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -742,6 +749,7 @@
         <image name="heart" catalog="system" width="128" height="109"/>
         <image name="love" width="78" height="82"/>
         <image name="newphoto" width="1840" height="1380"/>
+        <image name="plus" catalog="system" width="128" height="113"/>
         <image name="sad" width="78" height="87"/>
         <image name="xmark" catalog="system" width="128" height="113"/>
         <namedColor name="NavigationBarTitle">

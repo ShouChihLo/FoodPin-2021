@@ -6,9 +6,14 @@
 //
 
 import UIKit
+import CoreData
 
 class TableViewController: UITableViewController {
     
+    var fetchResultController: NSFetchedResultsController<Restaurant>!
+    var appDelegate: AppDelegate!
+    var managedContext: NSManagedObjectContext!
+
     var restaurants:[Restaurant] = []
         
     lazy var dataSource = configureDataSource()
@@ -18,21 +23,34 @@ class TableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //initialized the data source array
-        Restaurant.generateData(sourceArray: &restaurants) //pass-by-reference
+        // init core data
+        appDelegate = (UIApplication.shared.delegate as! AppDelegate)
+        managedContext = appDelegate.persistentContainer.viewContext
+        let fetchRequest: NSFetchRequest<Restaurant> = Restaurant.fetchRequest()
+        let count = try? managedContext.count(for: fetchRequest)
+        if count == 0 { Restaurant.generateData() }
 
+        
+        
         tableView.dataSource = dataSource
                 
         //Create the snapshot
-        var snapshot = NSDiffableDataSourceSnapshot<Section, Restaurant>()
-        snapshot.appendSections([.all])
-        snapshot.appendItems(restaurants, toSection: .all)
-
-        dataSource.apply(snapshot, animatingDifferences: false)
+//        var snapshot = NSDiffableDataSourceSnapshot<Section, Restaurant>()
+//        snapshot.appendSections([.all])
+//        snapshot.appendItems(restaurants, toSection: .all)
+//
+//        dataSource.apply(snapshot, animatingDifferences: false)
         
         //configure the navigation title
         navigationController?.navigationBar.prefersLargeTitles = true
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        // fetch data from the data store
+        fetchRestaurantData()   //will refresh the table view
+    }
+
 
   
     // MARK: - UITableView Diffable Data Source
@@ -47,7 +65,7 @@ class TableViewController: UITableViewController {
                 
                 //configure the cell's data
                 cell.nameLabel.text = restaurant.name
-                cell.thumbnailImageView.image = UIImage(named: restaurant.image)
+                cell.thumbnailImageView.image = UIImage(data: restaurant.image)
                 cell.locationLabel.text = restaurant.location
                 cell.typeLabel.text = restaurant.type
                 cell.accessoryType = restaurant.isFavorite ? .checkmark : .none
@@ -154,4 +172,51 @@ class TableViewController: UITableViewController {
         dismiss(animated: true, completion: nil)
     }
     
+    
+    // MARK: - Core Data
+    
+    func fetchRestaurantData() {
+        
+        // Get the NSFetchRequest object and set the sorting criteria (at least one)
+        let fetchRequest: NSFetchRequest<Restaurant> = Restaurant.fetchRequest()
+        let sortDescriptor = NSSortDescriptor(key: "name", ascending: true)
+        fetchRequest.sortDescriptors = [sortDescriptor]
+        
+        //Use the NSFetchedResultController to fetch and monitor the managed objects
+        fetchResultController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: managedContext, sectionNameKeyPath: nil, cacheName: nil)
+        fetchResultController.delegate = self
+        
+        //Start fetching data (run once and be monitored during the lifetime of the app)
+        do {
+            try fetchResultController.performFetch()
+            updateSnapshot()  //create the snapshot for the table view
+        } catch {
+            print(error)
+        }
+    }
+    
+    func updateSnapshot() {
+        
+        if let fetchedObjects = fetchResultController.fetchedObjects {
+            restaurants = fetchedObjects
+        }
+        
+        // Create a snapshot and populate the data
+        var snapshot = NSDiffableDataSourceSnapshot<Section, Restaurant>()
+        snapshot.appendSections([.all])
+        snapshot.appendItems(restaurants, toSection: .all)
+        dataSource.apply(snapshot, animatingDifferences: false)
+        
+    }
+
+    
 }
+
+extension TableViewController: NSFetchedResultsControllerDelegate {
+    
+    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        updateSnapshot()
+    }
+    
+}
+

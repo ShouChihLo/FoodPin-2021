@@ -17,7 +17,7 @@ class DetailViewController: UIViewController {
     @IBOutlet var headerView: DetailHeaderView!
   
     //This variable will be set with the passed data from the segue
-    var restaurant = Restaurant()
+    var restaurant: Restaurant!
 
 
     override func viewDidLoad() {
@@ -28,7 +28,7 @@ class DetailViewController: UIViewController {
         tableView.delegate = self
         
         // Config data on the table header
-        headerView.headerImageView.image = UIImage(named: restaurant.image)
+        headerView.headerImageView.image = UIImage(data: restaurant.image)
         headerView.nameLabel.text = restaurant.name
         headerView.typeLabel.text = restaurant.type
         let heartImage = restaurant.isFavorite ? "heart.fill" : "heart"
