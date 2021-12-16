@@ -23,27 +23,26 @@ class TableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // init core data
+        // write initial data entries into the database if empty
         appDelegate = (UIApplication.shared.delegate as! AppDelegate)
         managedContext = appDelegate.persistentContainer.viewContext
         let fetchRequest: NSFetchRequest<Restaurant> = Restaurant.fetchRequest()
         let count = try? managedContext.count(for: fetchRequest)
         if count == 0 { Restaurant.generateData() }
 
-        
-        
+        // set the data source to the tableview
         tableView.dataSource = dataSource
                 
-        //Create the snapshot
+        //Create the snapshot for the table view
 //        var snapshot = NSDiffableDataSourceSnapshot<Section, Restaurant>()
 //        snapshot.appendSections([.all])
 //        snapshot.appendItems(restaurants, toSection: .all)
-//
 //        dataSource.apply(snapshot, animatingDifferences: false)
         
         //configure the navigation title
         navigationController?.navigationBar.prefersLargeTitles = true
     }
+
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -138,7 +137,7 @@ class TableViewController: UITableViewController {
             self.dataSource.apply(snapshot, animatingDifferences: true)
             //delete from the source array
             self.restaurants.remove(at: indexPath.row)
-            
+
             // Call completion handler to dismiss the action button
             completionHandler(true)
         }
@@ -173,11 +172,12 @@ class TableViewController: UITableViewController {
     }
     
     
+    
     // MARK: - Core Data
     
     func fetchRestaurantData() {
         
-        // Get the NSFetchRequest object and set the sorting criteria (at least one)
+        // Get the NSFetchRequest object and set the sorting criteria (at least once)
         let fetchRequest: NSFetchRequest<Restaurant> = Restaurant.fetchRequest()
         let sortDescriptor = NSSortDescriptor(key: "name", ascending: true)
         fetchRequest.sortDescriptors = [sortDescriptor]
@@ -196,24 +196,24 @@ class TableViewController: UITableViewController {
     }
     
     func updateSnapshot() {
-        
+        // redirect the newly fetched objects to the restaurants array
         if let fetchedObjects = fetchResultController.fetchedObjects {
             restaurants = fetchedObjects
         }
         
-        // Create a snapshot and populate the data
+        // Create a snapshot and refresh the tableview
         var snapshot = NSDiffableDataSourceSnapshot<Section, Restaurant>()
         snapshot.appendSections([.all])
         snapshot.appendItems(restaurants, toSection: .all)
         dataSource.apply(snapshot, animatingDifferences: false)
-        
     }
 
-    
 }
+
 
 extension TableViewController: NSFetchedResultsControllerDelegate {
     
+    // this method will be called when the FetchedResultsController detects any data changes on fetched objects
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         updateSnapshot()
     }

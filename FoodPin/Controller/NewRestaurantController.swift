@@ -94,7 +94,8 @@ class NewRestaurantController: UITableViewController {
             
         }
     }
-
+    
+   
 
 }
 
