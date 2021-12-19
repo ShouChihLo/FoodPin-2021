@@ -494,6 +494,59 @@
             </objects>
             <point key="canvasLocation" x="-104.34782608695653" y="51.5625"/>
         </scene>
+        <!--About Table View Controller-->
+        <scene sceneID="oYU-m8-xip">
+            <objects>
+                <tableViewController id="zbm-nb-TxK" customClass="AboutTableViewController" customModule="FoodPin" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="whV-qu-k8c">
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <view key="tableHeaderView" contentMode="scaleToFill" id="LD9-UV-Qc3">
+                            <rect key="frame" x="0.0" y="0.0" width="390" height="200"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="foodpin-logo" translatesAutoresizingMaskIntoConstraints="NO" id="ccf-wK-Hxe">
+                                    <rect key="frame" x="0.0" y="0.0" width="390" height="200"/>
+                                </imageView>
+                            </subviews>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            <constraints>
+                                <constraint firstItem="ccf-wK-Hxe" firstAttribute="leading" secondItem="LD9-UV-Qc3" secondAttribute="leading" id="Zg7-f8-ygz"/>
+                                <constraint firstItem="ccf-wK-Hxe" firstAttribute="top" secondItem="LD9-UV-Qc3" secondAttribute="top" id="cwN-WI-Uyz"/>
+                                <constraint firstAttribute="bottom" secondItem="ccf-wK-Hxe" secondAttribute="bottom" id="sLF-ni-swd"/>
+                                <constraint firstAttribute="trailing" secondItem="ccf-wK-Hxe" secondAttribute="trailing" id="xDs-HA-Ub9"/>
+                            </constraints>
+                        </view>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="aboutcell" textLabel="D59-w1-cTJ" style="IBUITableViewCellStyleDefault" id="jyE-mz-Ypj">
+                                <rect key="frame" x="0.0" y="228" width="390" height="43.666667938232422"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="jyE-mz-Ypj" id="sbW-W0-JXc">
+                                    <rect key="frame" x="0.0" y="0.0" width="390" height="43.666667938232422"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="D59-w1-cTJ">
+                                            <rect key="frame" x="20" y="0.0" width="350" height="43.666667938232422"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="zbm-nb-TxK" id="5Dc-Co-hOA"/>
+                            <outlet property="delegate" destination="zbm-nb-TxK" id="tEf-W9-cIg"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yjE-jm-AhS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="14" y="782"/>
+        </scene>
         <!--New Restaurant-->
         <scene sceneID="Mic-8s-odZ">
             <objects>
@@ -745,6 +798,7 @@
     <resources>
         <image name="angry" width="78" height="103"/>
         <image name="cool" width="78" height="83"/>
+        <image name="foodpin-logo" width="142" height="53"/>
         <image name="happy" width="78" height="86"/>
         <image name="heart" catalog="system" width="128" height="109"/>
         <image name="love" width="78" height="82"/>

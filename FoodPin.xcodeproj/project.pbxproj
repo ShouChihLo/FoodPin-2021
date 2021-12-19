@@ -27,6 +27,7 @@
 		7902F8532766D0B200533516 /* RoundedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7902F8522766D0B200533516 /* RoundedTextField.swift */; };
 		7902F8562766D1D300533516 /* NewRestaurantController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7902F8552766D1D300533516 /* NewRestaurantController.swift */; };
 		7902F86527677D3300533516 /* FoodPin.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7902F86327677D3300533516 /* FoodPin.xcdatamodeld */; };
+		7902F86A276EC85700533516 /* AboutTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7902F869276EC85700533516 /* AboutTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +53,7 @@
 		7902F8522766D0B200533516 /* RoundedTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedTextField.swift; sourceTree = "<group>"; };
 		7902F8552766D1D300533516 /* NewRestaurantController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewRestaurantController.swift; sourceTree = "<group>"; };
 		7902F86427677D3300533516 /* FoodPin.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = FoodPin.xcdatamodel; sourceTree = "<group>"; };
+		7902F869276EC85700533516 /* AboutTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +99,7 @@
 				4EACA1DA2754BB700017E13A /* MapViewController.swift */,
 				4E3F460D275DF9B6003A09BC /* ReviewViewController.swift */,
 				7902F8552766D1D300533516 /* NewRestaurantController.swift */,
+				7902F869276EC85700533516 /* AboutTableViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -223,6 +226,7 @@
 				4EACA1DB2754BB700017E13A /* MapViewController.swift in Sources */,
 				4E8182B7272FC24D00BC9C56 /* SceneDelegate.swift in Sources */,
 				7902F8562766D1D300533516 /* NewRestaurantController.swift in Sources */,
+				7902F86A276EC85700533516 /* AboutTableViewController.swift in Sources */,
 				7902F86527677D3300533516 /* FoodPin.xcdatamodeld in Sources */,
 				4E6A38ED27390B6500114C4D /* DiffableDataSource.swift in Sources */,
 				7902F8532766D0B200533516 /* RoundedTextField.swift in Sources */,
