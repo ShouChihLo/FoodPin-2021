@@ -35,6 +35,10 @@ class DetailViewController: UIViewController {
         headerView.heartButton.tintColor = restaurant.isFavorite ? .systemYellow : .white
         headerView.heartButton.setImage(UIImage(systemName: heartImage), for: .normal)
         
+        if let rating = restaurant.rating {
+        headerView.ratingImageView.image = UIImage(named: rating)
+        }
+        
         // Disable the navigation title text
         navigationItem.largeTitleDisplayMode = .never
     }
@@ -62,6 +66,9 @@ class DetailViewController: UIViewController {
         if let rating = segue.identifier {
             // store the rating result (local but not global copy)
             self.restaurant.rating = rating
+            //save the change to the data store
+            let appDelegate = (UIApplication.shared.delegate as! AppDelegate)
+            appDelegate.saveContext()
             // show the rating on the image view
             self.headerView.ratingImageView.image = UIImage(named: rating)
         }

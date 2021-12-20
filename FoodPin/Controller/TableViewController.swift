@@ -17,6 +17,9 @@ class TableViewController: UITableViewController {
     var restaurants:[Restaurant] = []
         
     lazy var dataSource = configureDataSource()
+    
+    var searchController: UISearchController!
+
 
     // MARK: - UITableView Life's Cycle
     
@@ -41,6 +44,19 @@ class TableViewController: UITableViewController {
         
         //configure the navigation title
         navigationController?.navigationBar.prefersLargeTitles = true
+        
+        // Configure the Search controller
+       searchController = UISearchController(searchResultsController: nil)
+       searchController.searchResultsUpdater = self
+       //not change the color of the search contents
+       searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = "Search restaurants..."
+        searchController.searchBar.backgroundImage = UIImage()
+        searchController.searchBar.tintColor = UIColor(named: "NavigationBarTitle")
+
+
+       self.navigationItem.searchController = searchController
+       //tableView.tableHeaderView = searchController.searchBar
     }
 
     
@@ -90,35 +106,32 @@ class TableViewController: UITableViewController {
     
     //swipe-to-right
     override func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-
-    // Mark as favorite action
-    let actionTitle = restaurants[indexPath.row].isFavorite ? "uncheck" : "check"
-    let favoriteAction = UIContextualAction(style: .destructive, title: actionTitle) { (action, sourceView, completionHandler) in
-
-    let cell = tableView.cellForRow(at: indexPath) as! TableViewCell
-    //update source array
-    self.restaurants[indexPath.row].isFavorite = self.restaurants[indexPath.row].isFavorite ? false : true
-
-    //re-generate snapshot and apply again
-    var snapshot = NSDiffableDataSourceSnapshot<Section, Restaurant>()
-    snapshot.appendSections([.all])
-    snapshot.appendItems(self.restaurants, toSection: .all)
-    self.dataSource.apply(snapshot, animatingDifferences: false)
-
-    //update the cell's accessoryType
-    cell.accessoryType = self.restaurants[indexPath.row].isFavorite ? .checkmark : .none
-
-    // Call completion handler to dismiss the action button
-    completionHandler(true)
-    }
-
-    // change the background color of the action button
-    favoriteAction.backgroundColor = UIColor.systemYellow
-//    favoriteAction.image = UIImage(systemName: self.restaurants[indexPath.row].isFavorite ? "heart.slash.fill" : "heart.fill")
         
-    let swipeConfiguration = UISwipeActionsConfiguration(actions: [favoriteAction])
-
-    return swipeConfiguration
+        // Mark as favorite action
+        let actionTitle = restaurants[indexPath.row].isFavorite ? "uncheck" : "check"
+        let favoriteAction = UIContextualAction(style: .destructive, title: actionTitle) { (action, sourceView, completionHandler) in
+            
+            let cell = tableView.cellForRow(at: indexPath) as! TableViewCell
+            //update source array
+            self.restaurants[indexPath.row].isFavorite = self.restaurants[indexPath.row].isFavorite ? false : true
+            
+            //save the data change when mark or unmark the favorites
+            self.appDelegate.saveContext()
+            
+            //update the cell's accessoryType
+            cell.accessoryType = self.restaurants[indexPath.row].isFavorite ? .checkmark : .none
+            
+            // Call completion handler to dismiss the action button
+            completionHandler(true)
+        }
+        
+        // change the background color of the action button
+        favoriteAction.backgroundColor = UIColor.systemYellow
+        //    favoriteAction.image = UIImage(systemName: self.restaurants[indexPath.row].isFavorite ? "heart.slash.fill" : "heart.fill")
+        
+        let swipeConfiguration = UISwipeActionsConfiguration(actions: [favoriteAction])
+        
+        return swipeConfiguration
     }
     
     //swipe-to-left
@@ -128,15 +141,16 @@ class TableViewController: UITableViewController {
             return UISwipeActionsConfiguration()
         }
         
+        //disable the swiping action during the searching
+        if searchController.isActive { return UISwipeActionsConfiguration() }
+
+        
         //Delete Action
         let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { (action, sourceView, completionHandler) in
             
-            //delete from the table view (datasource and source array are separated: structure type)
-            var snapshot = self.dataSource.snapshot()
-            snapshot.deleteItems([restaurant])
-            self.dataSource.apply(snapshot, animatingDifferences: true)
-            //delete from the source array
-            self.restaurants.remove(at: indexPath.row)
+            // Delete the data from the data store
+            self.managedContext.delete(restaurant)
+            self.appDelegate.saveContext()
 
             // Call completion handler to dismiss the action button
             completionHandler(true)
@@ -175,10 +189,18 @@ class TableViewController: UITableViewController {
     
     // MARK: - Core Data
     
-    func fetchRestaurantData() {
+    func fetchRestaurantData(searchText:String = "") {
         
         // Get the NSFetchRequest object and set the sorting criteria (at least once)
         let fetchRequest: NSFetchRequest<Restaurant> = Restaurant.fetchRequest()
+    
+        // Set the searching criteria
+        if !searchText.isEmpty {
+        fetchRequest.predicate = NSPredicate(format: "name CONTAINS[c] %@", searchText)
+        // fetchRequest.predicate = NSPredicate(format: "name CONTAINS[c] %@ OR location CONTAINS[c] %@", searchText, searchText)
+        }
+
+        
         let sortDescriptor = NSSortDescriptor(key: "name", ascending: true)
         fetchRequest.sortDescriptors = [sortDescriptor]
         
@@ -216,6 +238,18 @@ extension TableViewController: NSFetchedResultsControllerDelegate {
     // this method will be called when the FetchedResultsController detects any data changes on fetched objects
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         updateSnapshot()
+    }
+    
+}
+
+extension TableViewController: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        
+        guard let searchText = searchController.searchBar.text else {
+            return
+        }
+        
+        fetchRestaurantData(searchText: searchText)
     }
     
 }

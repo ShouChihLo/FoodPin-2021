@@ -7,6 +7,7 @@
 
 
 import UIKit
+import SafariServices
 
 class AboutTableViewController: UITableViewController {
     
@@ -74,6 +75,23 @@ class AboutTableViewController: UITableViewController {
         snapshot.appendItems(sectionContent[1], toSection: .followus)
         
         dataSource.apply(snapshot, animatingDifferences: false)
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        openWithSafariViewController(indexPath: indexPath)
+        tableView.deselectRow(at: indexPath, animated: false)
+    }
+    
+    func openWithSafariViewController(indexPath: IndexPath) {
+        guard let linkItem = self.dataSource.itemIdentifier(for: indexPath) else {
+            return
+        }
+        
+        if let url = URL(string: linkItem.link) {
+            let safariController = SFSafariViewController(url: url)
+            present(safariController, animated: true, completion: nil)
+        }
     }
 
 

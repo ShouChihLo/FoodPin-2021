@@ -95,7 +95,38 @@ class NewRestaurantController: UITableViewController {
         }
     }
     
-   
+    @IBAction func saveButtonTapped(sender: UIButton) {
+        //Check empty fields and trigger an alert message
+        if nameTextField.text == "" || typeTextField.text == "" || addressTextField.text == "" || phoneTextField.text == "" || descriptionTextView.text == "" {
+            let alertController = UIAlertController(title: "Oops", message: "We can't proceed because one of the fields is blank. Please note that all fields are required.", preferredStyle: .alert)
+            let alertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+            alertController.addAction(alertAction)
+            present(alertController, animated: true, completion: nil)
+            
+            return
+        }
+        
+        //Create a managed object in the context
+        let appDelegate = (UIApplication.shared.delegate as! AppDelegate)
+        let restaurant = Restaurant(context: appDelegate.persistentContainer.viewContext)
+        
+        // Set the property values from the edit text fields
+        restaurant.name = nameTextField.text!
+        restaurant.type = typeTextField.text!
+        restaurant.location = addressTextField.text!
+        restaurant.phone = phoneTextField.text!
+        restaurant.summary = descriptionTextView.text
+        if let imageData = photoImageView.image?.pngData() {  //having a default image already
+            restaurant.image = imageData
+        }
+        
+        // Save the data to the data store
+        appDelegate.saveContext()
+        
+        // Dismiss the current view controller
+        dismiss(animated: true, completion: nil)
+    }
+    
 
 }
 
@@ -113,6 +144,7 @@ extension NewRestaurantController: UITextFieldDelegate  {
         return true
     }
 }
+
 
 // MARK: - UIImagePickerControllerDelegate methods
 
