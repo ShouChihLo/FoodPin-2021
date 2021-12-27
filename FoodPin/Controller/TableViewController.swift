@@ -64,6 +64,18 @@ class TableViewController: UITableViewController {
         super.viewDidAppear(animated)
         // fetch data from the data store
         fetchRestaurantData()   //will refresh the table view
+        
+        //display the walkthrough screen only for the first time
+        //if UserDefaults.standard.bool(forKey: "hasViewedWalkthrough") {
+        //return
+        //}
+
+        let storyboard = UIStoryboard(name: "Onboarding", bundle: nil)
+        if let walkthroughViewController = storyboard.instantiateViewController(withIdentifier: "WalkthroughViewController") as? WalkthroughViewController {
+
+        present(walkthroughViewController, animated: true, completion: nil)
+        }
+
     }
 
 

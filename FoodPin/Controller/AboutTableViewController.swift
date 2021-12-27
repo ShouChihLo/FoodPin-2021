@@ -11,7 +11,7 @@ import SafariServices
 
 class AboutTableViewController: UITableViewController {
     
-    enum Section {
+    enum Section: CaseIterable {
         case feedback
         case followus
     }
@@ -45,6 +45,13 @@ class AboutTableViewController: UITableViewController {
         updateSnapshot()
 
 
+    }
+    
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let sectionLabel = UILabel()
+        sectionLabel.backgroundColor = .systemGray2
+        sectionLabel.text = "\(Section.allCases[section])"
+        return sectionLabel
     }
 
     // MARK: - UITableView Diffable Data Source

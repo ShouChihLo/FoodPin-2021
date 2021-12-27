@@ -18,7 +18,7 @@ class WalkthroughViewController: UIViewController {
     }
     @IBOutlet var skipButton: UIButton!
 
-    //var walkthroughPageViewController: PageViewController?
+    var walkthroughPageViewController: PageViewController?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,7 +26,66 @@ class WalkthroughViewController: UIViewController {
        
     }
     
+    
+    // MARK: - Action methods
 
-   
+    @IBAction func skipButtonTapped(sender: UIButton) {
+        //UserDefaults.standard.set(true, forKey: "hasViewedWalkthrough")
+        dismiss(animated: true, completion: nil)
+    }
+    
+    @IBAction func nextButtonTapped(sender: UIButton) {
+        
+        if let index = walkthroughPageViewController?.currentIndex {
+            switch index {
+            case 0...1:
+                walkthroughPageViewController?.forwardPage()
+                
+            case 2:
+                //UserDefaults.standard.set(true, forKey: "hasViewedWalkthrough")
+                dismiss(animated: true, completion: nil)
+                
+            default: break
+                
+            }
+        }
+        
+        updateUI()
+    }
+    
+    func updateUI() {
+        if let index = walkthroughPageViewController?.currentIndex {
+            switch index {
+            case 0...1:
+                nextButton.setTitle("NEXT", for: .normal)
+                skipButton.isHidden = false
+            case 2:
+                nextButton.setTitle("GET STARTED", for: .normal)
+                skipButton.isHidden = true
+            default: break
+            }
+            
+            pageControl.currentPage = index
+        }
+    }
+     
+    
+    // MARK: - Navigation
 
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let destination = segue.destination
+        if let pageViewController = destination as? PageViewController {
+            walkthroughPageViewController = pageViewController
+            walkthroughPageViewController?.walkthroughDelegate = self
+        }
+    }
+        
+}
+
+
+extension WalkthroughViewController: PageIndexDelegate {
+    func didUpdatePageIndex(currentIndex: Int) {
+        updateUI()
+    }
+    
 }
