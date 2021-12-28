@@ -19,6 +19,7 @@ class PageViewController: UIPageViewController {
     
     var currentIndex = 0
 
+    // Reference pointer pointed to the walkthrough view controller
     weak var walkthroughDelegate: PageIndexDelegate?
 
     override func viewDidLoad() {
@@ -27,7 +28,7 @@ class PageViewController: UIPageViewController {
         dataSource = self
         delegate = self
 
-        // show the first page by default
+        // Show the first page by default
         if let startingViewController = contentViewController(at: 0) {
         setViewControllers([startingViewController], direction: .forward, animated: true, completion: nil)
         }
@@ -35,6 +36,7 @@ class PageViewController: UIPageViewController {
     }
     
     func contentViewController(at index: Int) -> ContentViewController? {
+        // page index range check
         if index < 0 || index >= pageHeadings.count {
             return nil
         }
@@ -54,6 +56,7 @@ class PageViewController: UIPageViewController {
         return nil
     }
     
+    // triggered by the next button
     func forwardPage() {
         currentIndex += 1
         if let nextViewController = contentViewController(at: currentIndex) {
@@ -85,6 +88,8 @@ extension PageViewController: UIPageViewControllerDataSource {
     }
 }
 
+
+// capture the page change events
 extension PageViewController: UIPageViewControllerDelegate {
    
     func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
@@ -92,8 +97,9 @@ extension PageViewController: UIPageViewControllerDelegate {
         if completed {
             if let contentViewController = pageViewController.viewControllers?.first as? ContentViewController {
                 
+                // update the current page index after the page change is done
                 currentIndex = contentViewController.index
-                
+                // update the page indicator (controll)
                 walkthroughDelegate?.didUpdatePageIndex(currentIndex: currentIndex)
             }
             

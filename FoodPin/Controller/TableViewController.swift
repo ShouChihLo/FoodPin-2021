@@ -46,10 +46,10 @@ class TableViewController: UITableViewController {
         navigationController?.navigationBar.prefersLargeTitles = true
         
         // Configure the Search controller
-       searchController = UISearchController(searchResultsController: nil)
-       searchController.searchResultsUpdater = self
-       //not change the color of the search contents
-       searchController.obscuresBackgroundDuringPresentation = false
+        searchController = UISearchController(searchResultsController: nil)
+        searchController.searchResultsUpdater = self
+        //not change the color of the search contents
+        searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = "Search restaurants..."
         searchController.searchBar.backgroundImage = UIImage()
         searchController.searchBar.tintColor = UIColor(named: "NavigationBarTitle")
