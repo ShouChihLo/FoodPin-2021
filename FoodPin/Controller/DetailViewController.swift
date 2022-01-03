@@ -31,9 +31,7 @@ class DetailViewController: UIViewController {
         headerView.headerImageView.image = UIImage(data: restaurant.image)
         headerView.nameLabel.text = restaurant.name
         headerView.typeLabel.text = restaurant.type
-        let heartImage = restaurant.isFavorite ? "heart.fill" : "heart"
-        headerView.heartButton.tintColor = restaurant.isFavorite ? .systemYellow : .white
-        headerView.heartButton.setImage(UIImage(systemName: heartImage), for: .normal)
+        displayHeartImage()
         
         if let rating = restaurant.rating {
         headerView.ratingImageView.image = UIImage(named: rating)
@@ -56,6 +54,23 @@ class DetailViewController: UIViewController {
         }
     }
     
+    @IBAction func heartButtonTapped() {
+        //toggle the isFavorite state
+        restaurant.isFavorite = restaurant.isFavorite ? false : true
+        //save the change to the data store
+        let appDelegate = (UIApplication.shared.delegate as! AppDelegate)
+        appDelegate.saveContext()
+        //disply the heart image
+        displayHeartImage()
+    }
+    
+    private func displayHeartImage() {
+        let heartImage = restaurant.isFavorite ? "heart.fill" : "heart"
+        headerView.heartButton.tintColor = restaurant.isFavorite ? .systemYellow : .white
+        headerView.heartButton.setImage(UIImage(systemName: heartImage), for: .normal)
+    }
+
+    
     //unwind from the review view controller (tap the cross button)
     @IBAction func close(segue: UIStoryboardSegue) {
     dismiss(animated: true, completion: nil)
@@ -66,11 +81,13 @@ class DetailViewController: UIViewController {
         if let rating = segue.identifier {
             // store the rating result (local but not global copy)
             self.restaurant.rating = rating
+
+            // show the rating on the image view
+            self.headerView.ratingImageView.image = UIImage(named: rating)
+            
             //save the change to the data store
             let appDelegate = (UIApplication.shared.delegate as! AppDelegate)
             appDelegate.saveContext()
-            // show the rating on the image view
-            self.headerView.ratingImageView.image = UIImage(named: rating)
         }
         
         dismiss(animated: true, completion: nil)

@@ -155,6 +155,9 @@
                                             <state key="normal" image="heart" catalog="system">
                                                 <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="30"/>
                                             </state>
+                                            <connections>
+                                                <action selector="heartButtonTapped" destination="mIi-pX-WoN" eventType="touchUpInside" id="rOq-m0-Rea"/>
+                                            </connections>
                                         </button>
                                     </subviews>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
