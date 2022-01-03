@@ -9,6 +9,8 @@ import UIKit
 
 class NewRestaurantController: UITableViewController {
     
+    var editedRestaurant: Restaurant?
+    
     @IBOutlet var nameTextField: RoundedTextField! {
         didSet {
             nameTextField.tag = 1
@@ -46,7 +48,17 @@ class NewRestaurantController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        // Dismiss keyboard when users tap any blank area of the view
+        let tap = UITapGestureRecognizer(target: view, action: #selector(UIView.endEditing))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+        
+        // if update data, load the old data first
+        if editedRestaurant != nil {
+            navigationItem.title = "Update Restaurant"
+            loadOldData()
+        }
     }
 
    
@@ -107,9 +119,15 @@ class NewRestaurantController: UITableViewController {
         }
         
         //Create a managed object in the context
+        var restaurant: Restaurant
         let appDelegate = (UIApplication.shared.delegate as! AppDelegate)
-        let restaurant = Restaurant(context: appDelegate.persistentContainer.viewContext)
-        
+        if editedRestaurant == nil { //add new data
+            restaurant = Restaurant(context: appDelegate.persistentContainer.viewContext)
+        }
+        else { // edit old data
+            restaurant = editedRestaurant!
+        }
+   
         // Set the property values from the edit text fields
         restaurant.name = nameTextField.text!
         restaurant.type = typeTextField.text!
@@ -125,6 +143,19 @@ class NewRestaurantController: UITableViewController {
         
         // Dismiss the current view controller
         dismiss(animated: true, completion: nil)
+    }
+    
+    private func loadOldData() {
+        nameTextField.text = editedRestaurant?.name
+        typeTextField.text = editedRestaurant?.type
+        addressTextField.text = editedRestaurant?.location
+        phoneTextField.text = editedRestaurant?.phone
+        descriptionTextView.text = editedRestaurant?.summary
+        if let restaurantImageName = editedRestaurant?.image {
+            photoImageView.image = UIImage(data: restaurantImageName as Data)
+            photoImageView.contentMode = .scaleAspectFill
+            photoImageView.clipsToBounds = true
+        }
     }
     
 

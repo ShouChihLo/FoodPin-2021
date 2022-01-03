@@ -15,6 +15,7 @@ class TableViewController: UITableViewController {
     var managedContext: NSManagedObjectContext!
 
     var restaurants:[Restaurant] = []
+    var editedRestaurant: Restaurant?
         
     lazy var dataSource = configureDataSource()
     
@@ -66,9 +67,9 @@ class TableViewController: UITableViewController {
         fetchRestaurantData()   //will refresh the table view
         
         //display the walkthrough screen only for the first time
-        //if UserDefaults.standard.bool(forKey: "hasViewedWalkthrough") {
-        //return
-        //}
+        if UserDefaults.standard.bool(forKey: "hasViewedWalkthrough") {
+            return
+        }
 
         let storyboard = UIStoryboard(name: "Onboarding", bundle: nil)
         if let walkthroughViewController = storyboard.instantiateViewController(withIdentifier: "WalkthroughViewController") as? WalkthroughViewController {
@@ -167,14 +168,26 @@ class TableViewController: UITableViewController {
             // Call completion handler to dismiss the action button
             completionHandler(true)
         }
-        
         // Change the button's color
         deleteAction.backgroundColor = UIColor.systemRed
         deleteAction.image = UIImage(systemName: "trash")
+        
+        // Edit Action
+        let editAction = UIContextualAction(style: .normal, title: "Edit") { (action, sourceView, completionHandler) in
+            //get the cooresponding managed object
+            //self.editedRestaurant = self.fetchResultController.object(at: indexPath)
+            self.editedRestaurant = self.restaurants[indexPath.row]
+            self.performSegue(withIdentifier: "updateData", sender: nil)
+            
+            completionHandler(true)
+        }
+        // Change the button's color
+        editAction.backgroundColor = UIColor.systemBlue
+        editAction.image = UIImage(systemName: "square.and.pencil")
 
         
         // Configure the action as swipe action
-        let swipeConfiguration = UISwipeActionsConfiguration(actions: [deleteAction])
+        let swipeConfiguration = UISwipeActionsConfiguration(actions: [deleteAction, editAction])
         
         return swipeConfiguration
 
@@ -191,6 +204,11 @@ class TableViewController: UITableViewController {
                 destinationController.restaurant = restaurants[indexPath.row]
             }
         }
+        else if segue.identifier == "updateData" {
+                   let destinationController = segue.destination as! UINavigationController
+                   let topView = destinationController.topViewController as! NewRestaurantController
+                   topView.editedRestaurant = editedRestaurant
+               }
     }
     
     @IBAction func unwindToHome(segue: UIStoryboardSegue) {

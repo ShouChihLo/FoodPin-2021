@@ -90,6 +90,9 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <segue destination="sMk-xg-vki" kind="presentation" identifier="updateData" modalPresentationStyle="fullScreen" id="IZa-3n-5eh"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="flX-aA-6QM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -835,6 +838,9 @@
             <point key="canvasLocation" x="-1083" y="50"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="IZa-3n-5eh"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="angry" width="78" height="103"/>
         <image name="cool" width="78" height="83"/>
